@@ -12,6 +12,6 @@ public enum VehicleType {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Jenis Kendaraan harus Mobil atau Motor");
+        throw new IllegalArgumentException("Jenis kendaraan harus Motor atau Mobil");
     }
 }
