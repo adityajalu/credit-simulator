@@ -15,3 +15,4 @@ public enum VehicleCondition {
         throw new IllegalArgumentException("Kondisi kendaraan harus Baru atau Bekas");
     }
 }
+ 
