@@ -84,26 +84,16 @@ public class App {
                 }
 
                 case LOAD -> {
-                    // Ambil data dari web service lalu hitung otomatis
+                    // Ambil data dari web service (atau fallback) lalu hitung otomatis
                     view.println("Menghubungi server...");
-                    try {
-                        // Gunakan LoanRequestSource berupa lambda agar SimulatorSession
-                        // tetap menjadi satu-satunya tempat kalkulasi dijalankan
-                        var request = loader.fetch();
-                        view.println("Data dari server berhasil dimuat.");
+                    var request = loader.fetch();   // tidak throw — sudah ada fallback
 
-                        SimulatorSession session =
-                                new SimulatorSession(view, clock, () -> request);
-                        Optional<Calculation> result = session.run();
-                        if (result.isPresent()) {
-                            lastCalc = result.get();
-                            view.println("(Ketik \"save\" untuk menyimpan hasil ini sebagai sheet.)");
-                        }
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                        view.showError("Koneksi terputus.");
-                    } catch (Exception e) {
-                        view.showError("Gagal load dari server: " + e.getMessage());
+                    SimulatorSession session =
+                            new SimulatorSession(view, clock, () -> request);
+                    Optional<Calculation> result = session.run();
+                    if (result.isPresent()) {
+                        lastCalc = result.get();
+                        view.println("(Ketik \"save\" untuk menyimpan hasil ini sebagai sheet.)");
                     }
                 }
 
