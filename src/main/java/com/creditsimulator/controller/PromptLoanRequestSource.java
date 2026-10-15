@@ -29,7 +29,10 @@ public class PromptLoanRequestSource implements LoanRequestSource {
         return new LoanRequest(type, condition, year, loan, tenor, downPayment);
     }
 
-    /** Mengajukan satu pertanyaan. Interaktif: tanya ulang kalau salah. Mode file: langsung gagal. */
+    /**
+     * Mengajukan satu pertanyaan. Interaktif: tanya ulang kalau salah. Mode file:
+     * langsung gagal.
+     */
     private <T> T ask(String question, Function<String, T> parser) {
         while (true) {
             view.prompt(question);

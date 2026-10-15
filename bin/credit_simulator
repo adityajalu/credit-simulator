@@ -1,0 +1,19 @@
+#!/bin/sh
+# ─────────────────────────────────────────────────────
+# bin/credit_simulator — launcher script (dari subfolder bin/)
+#
+# Penggunaan:
+#   bin/credit_simulator                  (mode interaktif)
+#   bin/credit_simulator file_inputs.txt  (mode file)
+# ─────────────────────────────────────────────────────
+
+# Naik satu level dari bin/ ke root project
+DIR="$(cd "$(dirname "$0")/.." && pwd)"
+JAR="$DIR/target/credit-simulator-1.0.0.jar"
+
+if [ ! -f "$JAR" ]; then
+  echo "ERROR: JAR belum ada. Jalankan dulu: mvn package"
+  exit 1
+fi
+
+java -jar "$JAR" "$@"
