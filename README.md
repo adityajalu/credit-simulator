@@ -166,3 +166,6 @@ credit_simulator/          ← root project
     │   └── view/                           ← tampilan console
     └── test/                               ← unit test
 ```
+
+
+test
